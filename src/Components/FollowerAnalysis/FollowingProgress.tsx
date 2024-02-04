@@ -5,25 +5,26 @@ import {
   ProgressCircle,
   BadgeDelta,
 } from "@tremor/react";
-import {FollowerAnalysis} from "@/Interface/api.interface";
+import {FollowingAnalysis} from "@/Interface/api.interface";
 
-const FollowerProgress: React.FC<FollowerAnalysis> = ({
-  followerCount,
+const FollowingProgress: React.FC<FollowingAnalysis> = ({
+  followingCount,
   increaseOrDecrease,
 }) => {
-  console.log(followerCount);
+
   return (
     <Card className="followerCard" style={{ backgroundColor: "#000000" }}>
-      <h2 className="followerCardTitle font-mono">Followers</h2>
+      <h2 className="followerCardTitle font-mono">Following</h2>
       <Flex>
         <ProgressCircle
           className="followerProgressCircle"
-          value={followerCount}
+          value={followingCount}
           radius={40}
-          strokeWidth={10}
-          tooltip="Followers"
-          color={"green"}
-        > <span className="text-md text-gray-700 font-large ">{followerCount}</span></ProgressCircle>
+          strokeWidth={12}
+          tooltip="Following"
+          color={"purple"}
+
+        > <span className="text-md text-gray-700 font-large ">{followingCount}</span></ProgressCircle>
         {increaseOrDecrease === "no_change" ? (
           <BadgeDelta deltaType="unchanged" isIncreasePositive={true}
           size="sm" color={"green"}>No Change</BadgeDelta>
@@ -33,7 +34,7 @@ const FollowerProgress: React.FC<FollowerAnalysis> = ({
             deltaType="moderateIncrease"
             isIncreasePositive={true}
             size="sm"
-            color={"green"}
+            color={""}
           >
             Increase
           </BadgeDelta>
@@ -43,4 +44,4 @@ const FollowerProgress: React.FC<FollowerAnalysis> = ({
   );
 };
 
-export default FollowerProgress;
+export default FollowingProgress;
