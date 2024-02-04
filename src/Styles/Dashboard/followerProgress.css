@@ -1,0 +1,33 @@
+.gridLayout {
+    margin-top: 3%;
+  }
+  
+  .followerCard {
+    height: auto;
+    max-width: 250px; /* Set a maximum width to limit the card size */
+    border-radius: 50px; /* Combine border-radius definitions */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 8%;
+    padding: 20px; /* Added padding for better spacing */
+    border-color: #3B3486;
+
+  }
+  
+  .followerCardTitle {
+    font-size: 15px;
+    font-weight: bolder;
+    margin-top: 0;
+    color: white;
+  }
+  
+  .followerProgressCircle {
+    color: #864AF9;
+    margin-top: 5px; /* Adjusted margin for spacing */
+  }
+  
+  .followerBadge {
+    margin-top: 5px; /* Adjusted margin for spacing */
+  }
+  

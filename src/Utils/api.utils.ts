@@ -1,0 +1,1 @@
+export const BASE_API = "http://localhost:3004/auth/user/profileAnalysis/"
