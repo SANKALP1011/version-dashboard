@@ -10,6 +10,9 @@ export interface FollowerAnalysis {
   }
 
   export interface LanguageCountAnalysis{
-    [language:string]:any;
+
+      [LangName: string]: number;
+
+    
   }
   

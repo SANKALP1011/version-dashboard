@@ -1,21 +1,30 @@
-import React  from "react";
-import { BarChart , Card } from "@tremor/react";
+import React from "react";
+import { BarChart, Card } from "@tremor/react";
 import { LanguageCountAnalysis } from "@/Interface/api.interface";
 
-
-
-export const LanguageCount: React.FC<LanguageCountAnalysis> =({LangName , LangCount})=>{
-    return <Card>
-    <BarChart
-      className="mt-6"
-      data={LangName}
-      index="name"
-      categories={["Number of threatened species"]}
-      colors={["blue"]}
-      valueFormatter={LangCount}
-      yAxisWidth={48}
-    />
-
-    </Card>
+interface LanguageCountProps {
+  languageCounts: LanguageCountAnalysis;
 }
+
+const LanguageCount: React.FC<LanguageCountProps> = ({ languageCounts }) => {
+  const chartData = Object.entries(languageCounts).map(([name, count]) => ({
+    name,
+    "Lines of Languages used": count,
+  }));
+
+  return (
+    <Card className="langCountCard ">
+      <BarChart
+        className="mt-6"
+        data={chartData}
+        index="name"
+        categories={["Lines of Languages used"]}
+        colors={["orange"]}
+        valueFormatter={(value) => String(value)}
+        yAxisWidth={56}
+      />
+    </Card>
+  );
+};
+
 export default LanguageCount;

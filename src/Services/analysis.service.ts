@@ -22,7 +22,7 @@ export const getFollowingAnalysis = async(userId:string)=>{
 }
 
 export const getLanguageCountAnalysis = async(userId:string)=>{
-    const endPoint = "tsotalLangaugeCountAnalysi"
+    const endPoint = "tsotalLanguageCountsAnalysi"
     try{
         const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
         console.log(response)

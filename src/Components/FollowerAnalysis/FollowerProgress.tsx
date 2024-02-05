@@ -13,7 +13,7 @@ const FollowerProgress: React.FC<FollowerAnalysis> = ({
 }) => {
   console.log(followerCount);
   return (
-    <Card className="followerCard" style={{ backgroundColor: "#000000" }}>
+    <Card className="followerCard drop-shadow-2xl" style={{ backgroundColor: "#FF1E56" }}>
       <h2 className="followerCardTitle font-mono">Followers</h2>
       <Flex>
         <ProgressCircle

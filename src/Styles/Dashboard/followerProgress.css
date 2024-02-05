@@ -1,7 +1,4 @@
-.gridLayout {
-    margin-top: 3%;
-  }
-  
+
   .followerCard {
     height: auto;
     max-width: 250px; /* Set a maximum width to limit the card size */
@@ -9,7 +6,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-left: 8%;
+    margin-left: 10%;
     padding: 20px; /* Added padding for better spacing */
     border-color: #3B3486;
 
@@ -19,15 +16,26 @@
     font-size: 15px;
     font-weight: bolder;
     margin-top: 0;
-    color: white;
+    color: black;
   }
   
   .followerProgressCircle {
     color: #864AF9;
-    margin-top: 5px; /* Adjusted margin for spacing */
+    margin-top: 5px; 
+    margin-right: 5%;
   }
   
   .followerBadge {
-    margin-top: 5px; /* Adjusted margin for spacing */
+    margin-top: 5px; 
   }
+
+  .langCountCard{
+   width: 600px;
+    height: auto;
+    background-color: black;
+  margin-left: 7%;
+  border-radius: 50px;
+  z-index: 1;
+  }
+
   
