@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "../Styles/Dashboard/followerProgress.css"
 import "../Styles/Dashboard/langCount.css"
+import "../Styles/Dashboard/main.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

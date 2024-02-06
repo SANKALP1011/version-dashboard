@@ -32,3 +32,14 @@ export const getLanguageCountAnalysis = async(userId:string)=>{
         return err;
     }
 }
+
+export const getFollowerFollowingRation = async(userId:string)=>{
+  const endPoint = "followerToFollowingRatio"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response
+  }
+  catch(err){
+    return err;
+  }
+}

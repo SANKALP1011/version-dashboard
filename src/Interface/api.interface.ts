@@ -1,18 +1,22 @@
 // follower-analysis.interface.ts
 export interface FollowerAnalysis {
-    followerCount: number;
-    increaseOrDecrease: string; // Use lowercase 'string'
-  }
-  
-  export interface FollowingAnalysis {
-    followingCount: number;
-    increaseOrDecrease: string;
-  }
+  followerCount: number;
+  increaseOrDecrease: string; // Use lowercase 'string'
+}
 
-  export interface LanguageCountAnalysis{
+export interface FollowingAnalysis {
+  followingCount: number;
+  increaseOrDecrease: string;
+}
 
-      [LangName: string]: number;
+export interface LanguageCountAnalysis {
+  [LangName: string]: number;
+}
 
-    
-  }
-  
+
+export interface FollowerFollowingRatio {
+
+    FollowerToFollowingRatio: String;
+
+
+}
