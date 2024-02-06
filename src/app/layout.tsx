@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "../Styles/Dashboard/followerProgress.css"
+import "../Styles/Dashboard/langCount.css"
 
 const inter = Inter({ subsets: ["latin"] });
 

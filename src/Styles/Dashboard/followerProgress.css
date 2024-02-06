@@ -12,11 +12,12 @@
 
   }
   
+  
   .followerCardTitle {
     font-size: 15px;
     font-weight: bolder;
     margin-top: 0;
-    color: black;
+    color: white;
   }
   
   .followerProgressCircle {
@@ -36,6 +37,10 @@
   margin-left: 7%;
   border-radius: 50px;
   z-index: 1;
+  }
+  .bb{
+    margin-left: 10%;
+    border-radius: 30px;
   }
 
   

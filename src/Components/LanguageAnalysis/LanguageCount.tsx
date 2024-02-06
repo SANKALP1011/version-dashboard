@@ -13,6 +13,8 @@ const LanguageCount: React.FC<LanguageCountProps> = ({ languageCounts }) => {
   }));
 
   return (
+    <div className="relative group items-start justify-center">
+    <div className="ml-10 langGradientBack  w-full absolute -inset-0.5 bg-gradient-to-r from-yellow-600 to-orange-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
     <Card className="langCountCard ">
       <BarChart
         className="mt-6"
@@ -24,6 +26,7 @@ const LanguageCount: React.FC<LanguageCountProps> = ({ languageCounts }) => {
         yAxisWidth={56}
       />
     </Card>
+    </div>
   );
 };
 

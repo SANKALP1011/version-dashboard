@@ -1,20 +1,29 @@
-import React from "react";
+import React , {useState} from "react";
 import {
   Card,
   Flex,
   ProgressCircle,
   BadgeDelta,
 } from "@tremor/react";
+import { RoughNotation } from "react-rough-notation";
 import {FollowingAnalysis} from "@/Interface/api.interface";
 
 const FollowingProgress: React.FC<FollowingAnalysis> = ({
   followingCount,
   increaseOrDecrease,
 }) => {
-
+  const [show, setShow] = useState(true); // Define and initialize the state variable
   return (
-    <Card className="followerCard " style={{ backgroundColor: "#F8FFD2" }}>
-      <h2 className="followerCardTitle font-mono">Following</h2>
+    <div className="relative group items-start justify-center">
+    <div className="bb w-full absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+    <Card className="followerCard " style={{ backgroundColor: "black" }}>
+    <div className="mb-3">
+      {show && ( 
+          <RoughNotation type="underline" show={show} color="red" strokeWidth={5}>
+            <h2 className="followerCardTitle font-mono">Followers</h2>
+          </RoughNotation>
+        )}
+        </div>
       <Flex>
         <ProgressCircle
           className="followerProgressCircle"
@@ -41,6 +50,7 @@ const FollowingProgress: React.FC<FollowingAnalysis> = ({
         )}
       </Flex>
     </Card>
+    </div>
   );
 };
 

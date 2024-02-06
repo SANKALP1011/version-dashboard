@@ -70,7 +70,7 @@ return followerAnlData.followerCount !== 0 && followingAnlData.followingCount !=
   <div>
     <div className="flex flex-row basis-20 mt-10">
       <div className="drop-shadow-2xl">
-      <Grid numItems={1} numItemsSm={2} numItemsLg={2} className="gap-3 ">
+      <Grid numItems={1} numItemsSm={2} numItemsLg={2} className="gap-3">
         <FollowerProgress
           followerCount={followerAnlData.followerCount}
           increaseOrDecrease={followerAnlData.increaseOrDecrease}
