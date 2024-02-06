@@ -20,3 +20,8 @@ export interface FollowerFollowingRatio {
 
 
 }
+
+export interface RepoCountAnalysis{
+  RepoCount: number;
+  increaseOrDecrease:string
+}

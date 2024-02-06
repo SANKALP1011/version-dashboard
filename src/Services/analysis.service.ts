@@ -33,8 +33,8 @@ export const getLanguageCountAnalysis = async(userId:string)=>{
     }
 }
 
-export const getFollowerFollowingRation = async(userId:string)=>{
-  const endPoint = "followerToFollowingRatio"
+export const getRepoCountAnalysis = async(userId:string)=>{
+  const endPoint = "repoCountAnalysis"
   try{
     const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
     return response
