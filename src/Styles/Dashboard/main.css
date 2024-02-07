@@ -1,10 +1,10 @@
 .tabCard{
     background-color: black;
-    border-radius: 45px;
+    border-radius: 55px;
     max-width: 230px;
-    height: auto;
+    height: 165px;
 }
 .tabCardBackGradient{
- max-width: 240px;
- border-radius: 45px;
+ max-width: 280px;
+ border-radius: 30px;
 }

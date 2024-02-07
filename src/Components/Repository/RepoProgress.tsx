@@ -17,13 +17,13 @@ const RepoProgress: React.FC<RepoCountAnalysis> = ({
 
 
   return (
-    <div className="relative group items-start justify-center">
-      <div className="bb w-full absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+    <div className="relative group items-start justify-center mt-10">
+      <div className="gradientbackGround w-full absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
       <Card className="followerCard drop-shadow-2xl" style={{ backgroundColor:"black" }}>
         <div className="mb-3">
       {show && ( // Conditional rendering based on show state
           <RoughNotation type="underline" show={show} color="orange" strokeWidth={5}>
-            <h2 className="followerCardTitle font-mono">Repo Count</h2>
+            <h2 className="followerAnalysisCardTitle font-mono">Repo Count</h2>
           </RoughNotation>
         )}
         </div>
@@ -34,7 +34,7 @@ const RepoProgress: React.FC<RepoCountAnalysis> = ({
             radius={40}
             strokeWidth={10}
             tooltip="Followers"
-            color={"green"}
+            color={"pink"}
           >
             <span className="text-md text-gray-700 font-large ">{RepoCount}</span>
           </ProgressCircle>

@@ -13,7 +13,7 @@
   }
   
   
-  .followerCardTitle {
+  .followerAnalysisCardTitle {
     font-size: 15px;
     font-weight: bolder;
     margin-top: 0;
@@ -38,13 +38,13 @@
   border-radius: 50px;
   z-index: 1;
   }
-  .bb{
+  .gradientbackGround{
     margin-left: 10%;
     border-radius: 30px;
   }
-  .i{
-    color: black;
-  }
+
+
+ 
 
 
   

@@ -29,6 +29,7 @@ import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
 import LanguageCount from "@/Components/LanguageAnalysis/LanguageCount";
 import RepoProgress from "@/Components/Repository/RepoProgress";
 
+
 const VersionDashboard: React.FC = () => {
   const [followerAnlData, setFollowerAnlData] = useState<FollowerAnalysis>({
     followerCount: 0,
@@ -118,11 +119,11 @@ const VersionDashboard: React.FC = () => {
             />
           </Grid>
           <Grid numItems={1} numItemsLg={2}>
-            <div className="ml-6 mt-8 relative group items-start justify-cente">
+            <div className="ml-6 mt-10 relative group items-start justify-cente">
               <div className="tabCardBackGradient absolute -inset-0.5 bg-gradient-to-r from-green-600 to-blue-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
               <Card className="tabCard">
                 <TabGroup>
-                  <TabList className="mt-8">
+                  <TabList className="mt-1">
                     <Tab>Repos</Tab>
                     <Tab>Ratio</Tab>
                     <Tab>Stars</Tab>

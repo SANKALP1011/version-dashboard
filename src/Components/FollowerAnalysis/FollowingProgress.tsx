@@ -15,12 +15,12 @@ const FollowingProgress: React.FC<FollowingAnalysis> = ({
   const [show, setShow] = useState(true); // Define and initialize the state variable
   return (
     <div className="relative group items-start justify-center">
-    <div className="bb w-full absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+    <div className="gradientbackGround w-full absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
     <Card className="followerCard " style={{ backgroundColor: "black" }}>
     <div className="mb-3">
       {show && ( 
           <RoughNotation type="underline" show={show} color="red" strokeWidth={5}>
-            <h2 className="followerCardTitle font-mono">Followers</h2>
+            <h2 className="followerAnalysisCardTitle font-mono">Followers</h2>
           </RoughNotation>
         )}
         </div>

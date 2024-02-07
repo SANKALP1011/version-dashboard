@@ -43,3 +43,25 @@ export const getRepoCountAnalysis = async(userId:string)=>{
     return err;
   }
 }
+
+export const getClosedCount = async(userId:string)=>{
+  const endPoint = "totalClosedIssuesCounts"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+}
+
+export const getOpenCount = async(userId:string)=>{
+  const endPoint = "totalOpenIssuesCounts"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+}
