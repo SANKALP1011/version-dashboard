@@ -19,7 +19,7 @@ const PullRequestProgress: React.FC<PullRequestAnalysis> = ({
   ];
 
   return (
-    <div className="pullRequestCard relative group items-start justify-center ml-16">
+    <div className="relative group items-start justify-center ml-16">
       <div className="pullReqGradientBack w-full absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
       <Card className="pullRequestCard">
         <RoughNotation type="underline" show={show} color="green" strokeWidth={5}>

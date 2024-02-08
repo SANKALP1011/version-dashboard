@@ -46,7 +46,7 @@
    background-color: black;
    border-radius: 55px;
   text-align: center;
-  max-width: 250px;
+  width: 320px;
   height: 200px;
 }
 .pullReqGradientBack{
