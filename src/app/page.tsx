@@ -1,12 +1,12 @@
 import Image from "next/image";
-import VersionDashboard from "./Dashboard/page";
+
 import "../Styles/Dashboard/followerProgress.css"
 
 
 export default function Home() {
   return (
+<h1>nkn</h1>
 
-      <VersionDashboard/>
 
   );
 }

@@ -25,3 +25,8 @@ export interface RepoCountAnalysis{
   RepoCount: number;
   increaseOrDecrease:string
 }
+
+export interface PullRequestAnalysis{
+  OpenCount: number;
+  ClosedCount: number;
+}

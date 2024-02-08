@@ -17,17 +17,21 @@ import {
   getFollowingAnalysis,
   getLanguageCountAnalysis,
   getRepoCountAnalysis,
+  getOpenCount,
+  getClosedCount
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
   FollowingAnalysis,
   LanguageCountAnalysis,
   RepoCountAnalysis,
+  PullRequestAnalysis
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
 import LanguageCount from "@/Components/LanguageAnalysis/LanguageCount";
 import RepoProgress from "@/Components/Repository/RepoProgress";
+import PullRequestProgress from "@/Components/PullReqAnalysis/PullReqProgress";
 
 
 const VersionDashboard: React.FC = () => {
@@ -47,6 +51,9 @@ const VersionDashboard: React.FC = () => {
     RepoCount: 0,
     increaseOrDecrease: "",
   });
+
+  const [issueCount,setIssueCount] = useState<PullRequestAnalysis>({OpenCount:0,ClosedCount:0});
+
 
   const getFollowerAnalysisData = async () => {
     try {
@@ -95,12 +102,35 @@ const VersionDashboard: React.FC = () => {
       console.error("Error fetching language count analysis:", error);
     }
   };
+  const getIssueCounts = async () => {
+    try {
+      const [openResponse, closedResponse]:[any,any] = await Promise.all([
+        getOpenCount("64b2e27fd3b241f53c4b4c55"),
+        getClosedCount("64b2e27fd3b241f53c4b4c55")
+      ]);
+  
+      const openCountData: { OpenCount: number } = await openResponse.json();
+      const closedCountData: { ClosedCount: number } = await closedResponse.json();
+
+      console.log("here is the main data")
+      console.log(openCountData)
+  
+      setIssueCount({ OpenCount: openCountData.OpenCount, ClosedCount: closedCountData.ClosedCount });
+    } catch (err) {
+      console.error("Error fetching issue counts:", err);
+    }
+  };
+  
+  
+
+
 
   useEffect(() => {
     getFollowerAnalysisData();
     getFollowingAnalysisData();
     getLanguageCountAnalysisData();
     getRepoCountAnalysisData();
+    getIssueCounts()
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -159,6 +189,7 @@ const VersionDashboard: React.FC = () => {
         <div className="langCountCardContainer drop-shadow-2xl">
           <LanguageCount languageCounts={langCount} />
         </div>
+        <PullRequestProgress OpenCount={issueCount.OpenCount} ClosedCount={issueCount.ClosedCount}/>
       </div>
     </div>
   ) : (

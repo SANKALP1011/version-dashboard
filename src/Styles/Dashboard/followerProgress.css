@@ -42,7 +42,22 @@
     margin-left: 10%;
     border-radius: 30px;
   }
-
+.pullRequestCard{
+   background-color: black;
+   border-radius: 55px;
+  text-align: center;
+  max-width: 250px;
+  height: 200px;
+}
+.pullReqGradientBack{
+  height: 210px;
+  border-radius: 30px;
+}
+.pullRequestTitle{
+   color: white;
+   font-size: 15px;
+   font-weight: bolder;
+}
 
  
 
