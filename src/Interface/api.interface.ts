@@ -30,3 +30,7 @@ export interface PullRequestAnalysis{
   OpenCount: number;
   ClosedCount: number;
 }
+
+export interface TopicAnalaysis{
+  [Topic:string]:number
+}

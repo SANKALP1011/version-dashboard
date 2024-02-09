@@ -65,3 +65,14 @@ export const getOpenCount = async(userId:string)=>{
     return err;
   }
 }
+
+export const getTopicAnalysis= async(userId:string)=>{
+  const endPoint = "totalTopicsCounts"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`);
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+}

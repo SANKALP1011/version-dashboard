@@ -1,13 +1,13 @@
 
   .followerCard {
     height: auto;
-    max-width: 250px; /* Set a maximum width to limit the card size */
-    border-radius: 50px; /* Combine border-radius definitions */
+    max-width: 250px;
+    border-radius: 50px; 
     justify-content: center;
     align-items: center;
     text-align: center;
     margin-left: 10%;
-    padding: 20px; /* Added padding for better spacing */
+    padding: 20px; 
     border-color: #3B3486;
 
   }
@@ -47,16 +47,33 @@
    border-radius: 55px;
   text-align: center;
   width: 320px;
-  height: 200px;
+  height: 175px;
 }
 .pullReqGradientBack{
-  height: 210px;
+  height: 180px;
   border-radius: 30px;
 }
 .pullRequestTitle{
    color: white;
    font-size: 15px;
    font-weight: bolder;
+}
+.topicCloudCard{
+  width: 320px;
+  height: 350px;
+  background-color: black;
+  border-radius: 50px;
+  text-align: center;
+}
+.topicBackGroundGrad{
+  height: 360px;
+  width: 325px;
+  border-radius: 35px;
+}
+.topicCardTitle{
+  font-size: 15px;
+  font-weight: bolder;
+  color: white;
 }
 
  
