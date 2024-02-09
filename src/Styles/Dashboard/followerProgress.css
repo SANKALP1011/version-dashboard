@@ -47,7 +47,7 @@
    border-radius: 55px;
   text-align: center;
   width: 320px;
-  height: 175px;
+  height: 195px;
 }
 .pullReqGradientBack{
   height: 180px;
@@ -75,7 +75,16 @@
   font-weight: bolder;
   color: white;
 }
-
+.totalLangCount{
+  background-color: black;
+  width: 550px;
+  border-radius: 10px;
+}
+.totalLangCountGradient{
+  width: 560px;
+  height: 65px;
+  border-radius: 5px;
+}
  
 
 

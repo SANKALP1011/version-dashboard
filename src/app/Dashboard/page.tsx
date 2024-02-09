@@ -19,7 +19,8 @@ import {
   getRepoCountAnalysis,
   getOpenCount,
   getClosedCount,
-  getTopicAnalysis
+  getTopicAnalysis,
+  getTotalLinesOfCodePushed
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
@@ -27,7 +28,8 @@ import {
   LanguageCountAnalysis,
   RepoCountAnalysis,
   PullRequestAnalysis,
-  TopicAnalaysis
+  TopicAnalaysis,
+  TotalLangAnalysis
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
@@ -35,6 +37,7 @@ import LanguageCount from "@/Components/LanguageAnalysis/LanguageCount";
 import RepoProgress from "@/Components/Repository/RepoProgress";
 import PullRequestProgress from "@/Components/PullReqAnalysis/PullReqProgress";
 import TopicProgress from "@/Components/TopicAnalysis/TopicProgress";
+import TotalLangProgress from "@/Components/LanguageAnalysis/TotalLangProgress";
 
 
 
@@ -60,6 +63,8 @@ const VersionDashboard: React.FC = () => {
   const [issueCount,setIssueCount] = useState<PullRequestAnalysis>({OpenCount:0,ClosedCount:0});
 
   const [topicCount,setTopicCount] = useState<TopicAnalaysis>({});
+
+  const [totalCount,setTotalCount] = useState<TotalLangAnalysis>({TotalCodePushedSinceJoingingGit:0})
 
 
   const getFollowerAnalysisData = async () => {
@@ -131,8 +136,6 @@ const VersionDashboard: React.FC = () => {
       const response:any = await getTopicAnalysis("64b2e27fd3b241f53c4b4c55")
       const data: TopicAnalaysis = await response.json();
       setTopicCount(data)
-      console.log("kjbkjbk")
-      console.log(data)
     }
     catch(err){
       console.log(err)
@@ -140,7 +143,17 @@ const VersionDashboard: React.FC = () => {
     }
   }
   
-  
+  const getTotallangCountData = async()=>{
+    try{
+      const response:any = await getTotalLinesOfCodePushed("64b2e27fd3b241f53c4b4c55")
+      const data:TotalLangAnalysis = await response.json();
+      setTotalCount(data)
+      console.log(data)
+    }
+    catch(err){
+      return err;
+    }
+  }
 
 
 
@@ -151,6 +164,7 @@ const VersionDashboard: React.FC = () => {
     getRepoCountAnalysisData();
     getIssueCounts()
     getTopicCountData()
+    getTotallangCountData()
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -205,6 +219,9 @@ const VersionDashboard: React.FC = () => {
               />
               
             </div>
+
+            <TotalLangProgress TotalCodePushedSinceJoingingGit={totalCount.TotalCodePushedSinceJoingingGit}/>
+
           </Grid>
         </div>
         <div className="langCountCardContainer drop-shadow-2xl">
@@ -218,7 +235,8 @@ const VersionDashboard: React.FC = () => {
          
       </div>
       <div className="flex flex-row basis-20 mt-2">
-       
+        <div></div>
+      
       </div>
     </div>
   ) : (

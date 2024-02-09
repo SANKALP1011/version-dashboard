@@ -34,3 +34,7 @@ export interface PullRequestAnalysis{
 export interface TopicAnalaysis{
   [Topic:string]:number
 }
+
+export interface TotalLangAnalysis{
+  TotalCodePushedSinceJoingingGit:number
+}

@@ -30,7 +30,7 @@ console.log(chartData)
         </RoughNotation>
 
         <DonutChart
-          className="mt-4 h-26"
+          className="mt-4 h-28"
           data={chartData}
           category="value"
           index="name"

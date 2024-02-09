@@ -76,3 +76,14 @@ export const getTopicAnalysis= async(userId:string)=>{
     return err;
   }
 }
+
+export const getTotalLinesOfCodePushed = async(userId:string)=>{
+  const endPoint = "totalLinesOfCodePushed";
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err
+  }
+}
