@@ -1,4 +1,27 @@
 .langGradientBack{
     border-radius: 30px;
-    width:610px
+    width: 330px;
 }
+.totalLangCard{
+    height: 250px;
+   width: 320px;
+    border-radius: 50px; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px; 
+    border-color: #3B3486;
+
+}
+ .totalLangProgressCircle {
+   color: #864AF9;
+    margin-top: 5px; 
+    margin-right: 5%;
+  }
+  
+  .totalLangrAnalysisCardTitle {
+    font-size: 15px;
+    font-weight: bolder;
+    margin-top: 0;
+    color: white;
+  }

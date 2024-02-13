@@ -36,7 +36,7 @@ const RepoProgress: React.FC<RepoCountAnalysis> = ({
             tooltip="Followers"
             color={"pink"}
           >
-            <span className="text-md text-gray-700 font-large ">{RepoCount}</span>
+            <span className="text-md text-blue-700 font-large font-extrabold font-mono">{RepoCount}</span>
           </ProgressCircle>
           {increaseOrDecrease === "no_change" ? (
             <BadgeDelta

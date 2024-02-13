@@ -1,21 +1,42 @@
-import React from "react";
-import { Card, BarList,ProgressBar } from "@tremor/react";
-import { TotalLangAnalysis } from "@/Interface/api.interface";
+import React , {useState} from "react";
+import {
+  Card,
+  Flex,
+  ProgressCircle,
+  BadgeDelta,
+} from "@tremor/react";
+import { RoughNotation } from "react-rough-notation";
+import {TotalLangAnalysis} from "@/Interface/api.interface";
 
 const TotalLangProgress: React.FC<TotalLangAnalysis> = ({
-  TotalCodePushedSinceJoingingGit,
+TotalCodePushedSinceJoingingGit
 }) => {
-
-  const bars = [
-    { name: "Total Count", value: TotalCodePushedSinceJoingingGit },
-  ];
-
+  const [show, setShow] = useState(true);
   return (
-    <div className="relative group items-start justify-center ml-6 mt-6">
-        <div className="totalLangCountGradient  absolute -inset-0.5 bg-gradient-to-r from-red-600 to-blue-600  blur opacity-2 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
-      <Card className="totalLangCount">
-        <ProgressBar value={TotalCodePushedSinceJoingingGit} color="orange" showAnimation={true} label="Lines of Code Pushed" />
-      </Card>
+    <div className="relative group items-start justify-center mt-5 ml-16">
+    <div className="langGradientBack w-full absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+    <Card className="totalLangCard " style={{ backgroundColor: "black" }}>
+    <div className="mb-3">
+      {show && ( 
+          <RoughNotation type="underline" show={show} color="red" strokeWidth={5}>
+            <h2 className="totalLangrAnalysisCardTitle font-mono mb-5">Lines of code pushed</h2>
+          </RoughNotation>
+        )}
+        </div>
+
+        <ProgressCircle
+          className="totalLangProgressCircle"
+          value={TotalCodePushedSinceJoingingGit}
+          radius={80}
+          strokeWidth={12}
+          tooltip="Lines of code pushed since joining git"
+          color={"orange"}
+          size="xl"
+
+        > <span className="text-md text-orange-700 font-large font-extrabold font-mono">{TotalCodePushedSinceJoingingGit}</span></ProgressCircle>
+    
+
+    </Card>
     </div>
   );
 };

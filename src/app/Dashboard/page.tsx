@@ -220,7 +220,7 @@ const VersionDashboard: React.FC = () => {
               
             </div>
 
-            <TotalLangProgress TotalCodePushedSinceJoingingGit={totalCount.TotalCodePushedSinceJoingingGit}/>
+           
 
           </Grid>
         </div>
@@ -230,6 +230,7 @@ const VersionDashboard: React.FC = () => {
         <div>
         <PullRequestProgress OpenCount={issueCount.OpenCount} ClosedCount={issueCount.ClosedCount}/>
         <TopicProgress topicCounts={topicCount}/>
+        <TotalLangProgress TotalCodePushedSinceJoingingGit={totalCount.TotalCodePushedSinceJoingingGit}/>
         </div>
       
          

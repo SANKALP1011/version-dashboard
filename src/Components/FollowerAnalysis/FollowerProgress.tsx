@@ -36,7 +36,7 @@ const FollowerProgress: React.FC<FollowerAnalysis> = ({
             tooltip="Followers"
             color={"green"}
           >
-            <span className="text-md text-gray-700 font-large ">{followerCount}</span>
+            <span className="text-md text-pink-700 font-large font-bold font-mono">{followerCount}</span>
           </ProgressCircle>
           {increaseOrDecrease === "no_change" ? (
             <BadgeDelta
