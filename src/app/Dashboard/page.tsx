@@ -20,7 +20,8 @@ import {
   getOpenCount,
   getClosedCount,
   getTopicAnalysis,
-  getTotalLinesOfCodePushed
+  getTotalLinesOfCodePushed,
+  getTopRepo
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
@@ -29,7 +30,8 @@ import {
   RepoCountAnalysis,
   PullRequestAnalysis,
   TopicAnalaysis,
-  TotalLangAnalysis
+  TotalLangAnalysis,
+  TopRepo
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
@@ -38,6 +40,7 @@ import RepoProgress from "@/Components/Repository/RepoProgress";
 import PullRequestProgress from "@/Components/PullReqAnalysis/PullReqProgress";
 import TopicProgress from "@/Components/TopicAnalysis/TopicProgress";
 import TotalLangProgress from "@/Components/LanguageAnalysis/TotalLangProgress";
+import TopRepoStatus from "@/Components/Repository/TopRepoStatus";
 
 
 
@@ -65,6 +68,8 @@ const VersionDashboard: React.FC = () => {
   const [topicCount,setTopicCount] = useState<TopicAnalaysis>({});
 
   const [totalCount,setTotalCount] = useState<TotalLangAnalysis>({TotalCodePushedSinceJoingingGit:0})
+
+  const [topRepo,setTopRepo] = useState<TopRepo>({Name:"",StarsCount:0,Language:"",DateOfCreation:""})
 
 
   const getFollowerAnalysisData = async () => {
@@ -155,7 +160,18 @@ const VersionDashboard: React.FC = () => {
     }
   }
 
-
+ 
+  const getTopRepoData = async()=>{
+    try{
+      const response:any = await getTopRepo("64b2e27fd3b241f53c4b4c55")
+      const data:TopRepo = await response.json();
+      setTopRepo(data)
+      console.log(data)
+    }
+    catch(err){
+      return err;
+    }
+  }
 
   useEffect(() => {
     getFollowerAnalysisData();
@@ -165,6 +181,7 @@ const VersionDashboard: React.FC = () => {
     getIssueCounts()
     getTopicCountData()
     getTotallangCountData()
+    getTopRepoData()
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -217,10 +234,12 @@ const VersionDashboard: React.FC = () => {
                 RepoCount={repoCount.RepoCount}
                 increaseOrDecrease={repoCount.increaseOrDecrease}
               />
-              
+
             </div>
 
-           
+<div>
+<TopRepoStatus topRepo={topRepo}/>
+</div>
 
           </Grid>
         </div>

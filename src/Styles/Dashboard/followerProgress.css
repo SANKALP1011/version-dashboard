@@ -41,6 +41,7 @@
   .gradientbackGround{
     margin-left: 10%;
     border-radius: 30px;
+    width: 258px;
   }
 .pullRequestCard{
    background-color: black;
@@ -81,11 +82,22 @@
   border-radius: 10px;
 }
 .totalLangCountGradient{
-  width: 560px;
-  height: 65px;
-  border-radius: 5px;
+  width: 320px;
+  border-radius: 35px;
 }
- 
+.topRepoCard{
+  border-radius: 45px;
+}
+.topgradientbackGround{
+ border-radius: 30px;
+ width: 245px;
+ height: 240px;
+}
+.topRepoCardTitle{
+  font-size: 15px;
+  text-align: center;
+}
+
 
 
   

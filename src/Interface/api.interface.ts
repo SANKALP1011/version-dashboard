@@ -38,3 +38,10 @@ export interface TopicAnalaysis{
 export interface TotalLangAnalysis{
   TotalCodePushedSinceJoingingGit:number
 }
+
+export interface TopRepo {
+  Name: string;
+  StarsCount: number;
+  Language: string;
+  DateOfCreation: string;
+}

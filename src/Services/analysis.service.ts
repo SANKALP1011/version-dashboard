@@ -87,3 +87,15 @@ export const getTotalLinesOfCodePushed = async(userId:string)=>{
     return err
   }
 }
+
+export const getTopRepo = async(userId:string)=>{
+  const endPoint = "getTopRepoAnalysis";
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+
+}
