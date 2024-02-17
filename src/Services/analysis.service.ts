@@ -99,3 +99,36 @@ export const getTopRepo = async(userId:string)=>{
   }
 
 }
+
+export const getPushEventAnalysis = async(userId:string)=>{
+  const endPoint ="getUserPushEventsAnalysis"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+}
+
+export const getWatchEventAnalysis = async(userId:string)=>{
+  const endPoint ="getUserWatchEventsAnalysis"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+}
+
+export const getPullEventAnalysis = async(userId:string)=>{
+  const endPoint ="getUserWatchEventsAnalysis"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response;
+  }
+  catch(err){
+    return err;
+  }
+}

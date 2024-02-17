@@ -19,9 +19,9 @@ const TopRepoStatus: React.FC<TopRepoStatusProp> = ({ topRepo }) => {
                 </RoughNotation>
 
                 <h3 className="text-orange-400 font-sans font-extrabold mb-4 mt-5">{topRepo.Name}</h3>
-                <p className="text-blue-400 font-sans font-extrabold mb-2">Stars Count: {topRepo.StarsCount}</p>
-                <p className="text-green-500 font-sans font-extrabold mb-2">Language: {topRepo.Language}</p>
-                <p className="text-pink-600 font-sans font-extrabold mb-2">Date of Creation: {new Date(topRepo.DateOfCreation).toLocaleString()}</p>
+                <p className="text-blue-400 font-sans font-extrabold mb-2">Stars Count - {topRepo.StarsCount}</p>
+                <p className="text-green-500 font-sans font-extrabold mb-2">Language -  {topRepo.Language}</p>
+                <p className="text-pink-600 font-sans font-extrabold mb-2">Creation - {new Date(topRepo.DateOfCreation).toLocaleString()}</p>
             </Card>
         </div>
     );
