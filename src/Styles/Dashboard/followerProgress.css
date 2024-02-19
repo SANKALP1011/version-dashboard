@@ -61,13 +61,13 @@
 }
 .topicCloudCard{
   width: 320px;
-  height: 350px;
+  height: 390px;
   background-color: black;
   border-radius: 50px;
   text-align: center;
 }
 .topicBackGroundGrad{
-  height: 360px;
+  height: 395px;
   width: 325px;
   border-radius: 35px;
 }
@@ -83,6 +83,7 @@
 }
 .totalLangCountGradient{
   width: 320px;
+  height: 250px;
   border-radius: 35px;
 }
 .topRepoCard{

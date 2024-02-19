@@ -270,7 +270,7 @@ const VersionDashboard: React.FC = () => {
     <div>
       <div className="flex flex-row basis-20 mt-10">
         <div className="drop-shadow-2xl">
-          <Grid numItems={1} numItemsSm={2} numItemsLg={2} className="gap-3">
+          <Grid numItems={1} numItemsSm={1} numItemsLg={2} className="gap-3">
             <FollowerProgress
               followerCount={followerAnlData.followerCount}
               increaseOrDecrease={followerAnlData.increaseOrDecrease}
@@ -280,35 +280,10 @@ const VersionDashboard: React.FC = () => {
               increaseOrDecrease={followerAnlData.increaseOrDecrease}
             />
           </Grid>
-          <Grid numItems={1} numItemsLg={2}>
+          <Grid numItems={1} numItemsLg={2} numItemsSm={1}>
             <div className="ml-6 mt-10 relative group items-start justify-cente">
               <div className="tabCardBackGradient absolute -inset-0.5 bg-gradient-to-r from-green-600 to-blue-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
-              <Card className="tabCard">
-                <TabGroup>
-                  <TabList className="mt-1">
-                    <Tab>Repos</Tab>
-                    <Tab>Ratio</Tab>
-                    <Tab>Stars</Tab>
-                  </TabList>
-                  <TabPanels>
-                    <TabPanel className="ml-4">
-                      <div className="mt-10">
-                        <p>nnk</p>
-                      </div>
-                    </TabPanel>
-                    <TabPanel>
-                      <div className="mt-10">
-                        <p>knkn</p>
-                      </div>
-                    </TabPanel>
-                    <TabPanel>
-                      <div className="mt-10">
-                        <p>knkn</p>
-                      </div>
-                    </TabPanel>
-                  </TabPanels>
-                </TabGroup>
-              </Card>
+            
             </div>
             <div>
               <RepoProgress
@@ -320,16 +295,13 @@ const VersionDashboard: React.FC = () => {
             <div>
               <TopRepoStatus topRepo={topRepo} />
             </div>
-           
           </Grid>
 
           <div>
-              {mostRecCommit && (
-                <RecentCommitProgress mostRecentCommit={mostRecCommit} />
-              )}
-            </div>
-
-         
+            {mostRecCommit && (
+              <RecentCommitProgress mostRecentCommit={mostRecCommit} />
+            )}
+          </div>
         </div>
         <div className="langCountCardContainer drop-shadow-2xl">
           <LanguageCount languageCounts={langCount} />

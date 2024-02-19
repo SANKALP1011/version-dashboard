@@ -8,7 +8,7 @@ const TotalLangProgress: React.FC<TotalLangAnalysis> = ({
 }) => {
   const [show, setShow] = useState(true);
   return (
-    <div className="relative group items-start justify-center mt-5 ml-16">
+    <div className="relative group items-start justify-center mt-6 ml-16">
       <div className="totalLangCountGradient w-full absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
       <Card className="totalLangCard " style={{ backgroundColor: "black" }}>
         <div className="mb-3">

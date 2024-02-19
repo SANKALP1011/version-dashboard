@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { Card } from "@tremor/react";
 import { MostRecentCommit } from "@/Interface/api.interface";
+import { RoughNotation } from "react-rough-notation";
 
 interface MostRecentCommitInterfaceProp {
   mostRecentCommit: MostRecentCommit;
@@ -9,24 +10,31 @@ interface MostRecentCommitInterfaceProp {
 const RecentCommitProgress: React.FC<MostRecentCommitInterfaceProp> = ({
   mostRecentCommit,
 }) => {
+  const [show,setShow] = useState(true)
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }} className="mt-5">
-      <div className="ml-4 mostRecentGradient absolute inset-0 bg-gradient-to-r from-teal-600 to-red-600 blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+    <div className="mt-3 relative group items-start justify-center">
+      <div className="ml-5 mostRecentGradient absolute inset-0 bg-gradient-to-r from-pink-600 to-red-600 blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
       <Card className="bg-black mostRecentCard ml-7">
-        <h1 className="text-white">
-          {mostRecentCommit.mostRecentCommit.ageInDays}
+        <div className="w-32 text-center mb-1">
+        <RoughNotation type="highlight" show={show} color="red" strokeWidth={5}>
+          <h2 className="text-white text-center font-sans font-extrabold">Recent Commit</h2>
+        </RoughNotation>
+        </div>
+ 
+        <h1 className="text-pink-600 font-sans font-extrabold mb-1">
+      <span className="text-blue-500 mr-2">Name:</span>   {mostRecentCommit.mostRecentCommit.repoName}
         </h1>
-        <h3 className="text-white">
-          {mostRecentCommit.mostRecentCommit.commitDate}
+        <h3 className="text-red-600 font-sans font-extrabold mb-1">
+     <span className="text-violet-600 mr-2"> Commit Date:</span>    {mostRecentCommit.mostRecentCommit.commitDate}
         </h3>
-        <p className="text-white">
-          {mostRecentCommit.mostRecentCommit.repoName}
+        <p className="text-orange-600 font-sans font-extrabold mb-1">
+       <span className="text-blue-600">AgeInDays:</span>   {mostRecentCommit.mostRecentCommit.ageInDays}
         </p>
-        <p className="text-white">
-          {mostRecentCommit.mostRecentCommit.commitData.author_Namae}
+        <p className="text-yellow-600 font-sans font-extrabold mb-1">
+      <span className="text-pink-400 mr-2">  Author:</span> {mostRecentCommit.mostRecentCommit.commitData.author_Namae}
         </p>
-        <p className="text-white">
-          {mostRecentCommit.mostRecentCommit.commitData.author_commit_message}
+        <p className="text-blue-600 font-sans font-extrabold">
+       <span className="text-green-600 mr-2">Message:</span>   {mostRecentCommit.mostRecentCommit.commitData.author_commit_message}
         </p>
       </Card>
     </div>
