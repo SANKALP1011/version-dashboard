@@ -25,3 +25,13 @@
     margin-top: 0;
     color: white;
   }
+
+
+  .mostRecentCard{
+border-radius: 40px;
+  }
+.mostRecentGradient{
+  width: 105%;
+  height: 108%;
+  border-radius: 35px;
+}

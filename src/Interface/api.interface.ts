@@ -59,3 +59,26 @@ export interface WatchEventAnalysis {
   date: Date;
   repoName: string;
 }
+
+export interface MostRecentCommit {
+  mostRecentCommit:{
+  commitDate: string;
+  ageInDays: number;
+  repoName: string;
+  commitData: {
+    author_Namae: string;
+    author_commit_message: string;
+    commit_Date: string;
+    _id: string;
+  };
+}
+}
+
+export interface CommitData {
+  
+}
+
+
+
+
+

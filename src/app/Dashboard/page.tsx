@@ -24,7 +24,8 @@ import {
   getTopRepo,
   getPullEventAnalysis,
   getPushEventAnalysis,
-  getWatchEventAnalysis
+  getWatchEventAnalysis,
+  getRecentCommitAnalysis,
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
@@ -37,7 +38,8 @@ import {
   TopRepo,
   PushEventAnalysis,
   WatchEventAnalysis,
-  PullEventAnalysis
+  PullEventAnalysis,
+  MostRecentCommit,
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
@@ -47,10 +49,7 @@ import PullRequestProgress from "@/Components/PullReqAnalysis/PullReqProgress";
 import TopicProgress from "@/Components/TopicAnalysis/TopicProgress";
 import TotalLangProgress from "@/Components/LanguageAnalysis/TotalLangProgress";
 import TopRepoStatus from "@/Components/Repository/TopRepoStatus";
-import EventProgress from "@/Components/EventsAnalysis/EventProgress";
-
-
-
+import RecentCommitProgress from "@/Components/Repository/RecentCommitProgeress";
 
 const VersionDashboard: React.FC = () => {
   const [followerAnlData, setFollowerAnlData] = useState<FollowerAnalysis>({
@@ -70,18 +69,42 @@ const VersionDashboard: React.FC = () => {
     increaseOrDecrease: "",
   });
 
-  const [issueCount,setIssueCount] = useState<PullRequestAnalysis>({OpenCount:0,ClosedCount:0});
+  const [issueCount, setIssueCount] = useState<PullRequestAnalysis>({
+    OpenCount: 0,
+    ClosedCount: 0,
+  });
 
-  const [topicCount,setTopicCount] = useState<TopicAnalaysis>({});
+  const [topicCount, setTopicCount] = useState<TopicAnalaysis>({});
 
-  const [totalCount,setTotalCount] = useState<TotalLangAnalysis>({TotalCodePushedSinceJoingingGit:0})
+  const [totalCount, setTotalCount] = useState<TotalLangAnalysis>({
+    TotalCodePushedSinceJoingingGit: 0,
+  });
 
-  const [topRepo,setTopRepo] = useState<TopRepo>({Name:"",StarsCount:0,Language:"",DateOfCreation:""})
+  const [topRepo, setTopRepo] = useState<TopRepo>({
+    Name: "",
+    StarsCount: 0,
+    Language: "",
+    DateOfCreation: "",
+  });
 
-  const [pullEvent, setPullEvent] = useState<PullEventAnalysis>({EventType:"",date: new Date() , repoName:""})
-  const [pushEvent,setPushEvent] = useState<PushEventAnalysis>({EvenType:"",date:new Date(),repoName:""})
-  const [watchEvent,setWatchEvent] = useState<WatchEventAnalysis>({EventType:"",date:new Date(),repoName:""})
-
+  const [pullEvent, setPullEvent] = useState<PullEventAnalysis>({
+    EventType: "",
+    date: new Date(),
+    repoName: "",
+  });
+  const [pushEvent, setPushEvent] = useState<PushEventAnalysis>({
+    EvenType: "",
+    date: new Date(),
+    repoName: "",
+  });
+  const [watchEvent, setWatchEvent] = useState<WatchEventAnalysis>({
+    EventType: "",
+    date: new Date(),
+    repoName: "",
+  });
+  const [mostRecCommit, setMostRecCommit] = useState<MostRecentCommit | null>(
+    null
+  );
 
   const getFollowerAnalysisData = async () => {
     try {
@@ -132,100 +155,114 @@ const VersionDashboard: React.FC = () => {
   };
   const getIssueCounts = async () => {
     try {
-      const [openResponse, closedResponse]:[any,any] = await Promise.all([
+      const [openResponse, closedResponse]: [any, any] = await Promise.all([
         getOpenCount("64b2e27fd3b241f53c4b4c55"),
-        getClosedCount("64b2e27fd3b241f53c4b4c55")
+        getClosedCount("64b2e27fd3b241f53c4b4c55"),
       ]);
-  
-      const openCountData: { OpenCount: number } = await openResponse.json();
-      const closedCountData: { ClosedCount: number } = await closedResponse.json();
 
-  
-      setIssueCount({ OpenCount: openCountData.OpenCount, ClosedCount: closedCountData.ClosedCount });
+      const openCountData: { OpenCount: number } = await openResponse.json();
+      const closedCountData: { ClosedCount: number } =
+        await closedResponse.json();
+
+      setIssueCount({
+        OpenCount: openCountData.OpenCount,
+        ClosedCount: closedCountData.ClosedCount,
+      });
     } catch (err) {
       console.error("Error fetching issue counts:", err);
     }
   };
 
-  const getTopicCountData = async()=>{
-    try{
-      const response:any = await getTopicAnalysis("64b2e27fd3b241f53c4b4c55")
+  const getTopicCountData = async () => {
+    try {
+      const response: any = await getTopicAnalysis("64b2e27fd3b241f53c4b4c55");
       const data: TopicAnalaysis = await response.json();
-      setTopicCount(data)
-    }
-    catch(err){
+      setTopicCount(data);
+    } catch (err) {
       return err;
     }
-  }
-  
-  const getTotallangCountData = async()=>{
-    try{
-      const response:any = await getTotalLinesOfCodePushed("64b2e27fd3b241f53c4b4c55")
-      const data:TotalLangAnalysis = await response.json();
-      setTotalCount(data)
-    }
-    catch(err){
+  };
+
+  const getTotallangCountData = async () => {
+    try {
+      const response: any = await getTotalLinesOfCodePushed(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: TotalLangAnalysis = await response.json();
+      setTotalCount(data);
+    } catch (err) {
       return err;
     }
-  }
+  };
 
- 
-  const getTopRepoData = async()=>{
-    try{
-      const response:any = await getTopRepo("64b2e27fd3b241f53c4b4c55")
-      const data:TopRepo = await response.json();
-      setTopRepo(data)
-    }
-    catch(err){
+  const getTopRepoData = async () => {
+    try {
+      const response: any = await getTopRepo("64b2e27fd3b241f53c4b4c55");
+      const data: TopRepo = await response.json();
+      setTopRepo(data);
+    } catch (err) {
       return err;
     }
-  }
+  };
 
-  const getPushEventData= async()=>{
-    try{
-      const response: any = await getPushEventAnalysis("64b2e27fd3b241f53c4b4c55")
-      const data:PushEventAnalysis = await response.json()
-      setPushEvent(data)
+  const getPushEventData = async () => {
+    try {
+      const response: any = await getPushEventAnalysis(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: PushEventAnalysis = await response.json();
+      setPushEvent(data);
+    } catch (err) {
+      return err;
     }
-    catch(err){
-      return err
-    }
-  }
+  };
 
-  const getWatchEventData= async()=>{
-    try{
-      const response: any = await getWatchEventAnalysis("64b2e27fd3b241f53c4b4c55")
-      const data:WatchEventAnalysis = await response.json()
-      setWatchEvent(data)
+  const getWatchEventData = async () => {
+    try {
+      const response: any = await getWatchEventAnalysis(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: WatchEventAnalysis = await response.json();
+      setWatchEvent(data);
+    } catch (err) {
+      return err;
     }
-    catch(err){
-      return err
-    }
-  }
+  };
 
-  const getPullEventData= async()=>{
-    try{
-      const response: any = await getPullEventAnalysis("64b2e27fd3b241f53c4b4c55")
-      const data:PullEventAnalysis = await response.json()
-      setPullEvent(data)
+  const getPullEventData = async () => {
+    try {
+      const response: any = await getPullEventAnalysis(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: PullEventAnalysis = await response.json();
+      setPullEvent(data);
+    } catch (err) {
+      return err;
     }
-    catch(err){
-      return err
-    }
-  }
+  };
 
+  const getMostRecentCommitData = async () => {
+    try {
+      const response: any = await getRecentCommitAnalysis(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: MostRecentCommit = await response.json();
+
+      setMostRecCommit(data);
+    } catch (err) {
+      return err;
+    }
+  };
   useEffect(() => {
     getFollowerAnalysisData();
     getFollowingAnalysisData();
     getLanguageCountAnalysisData();
     getRepoCountAnalysisData();
-    getIssueCounts()
-    getTopicCountData()
-    getTotallangCountData()
-    getTopRepoData()
-    getPushEventData()
-    getWatchEventData()
-    getPullEventData()
+    getIssueCounts();
+    getTopicCountData();
+    getTotallangCountData();
+    getTopRepoData();
+    getMostRecentCommitData();
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -278,33 +315,37 @@ const VersionDashboard: React.FC = () => {
                 RepoCount={repoCount.RepoCount}
                 increaseOrDecrease={repoCount.increaseOrDecrease}
               />
-
             </div>
-            
 
-<div>
-<TopRepoStatus topRepo={topRepo}/>
-</div>
-<div >
-<EventProgress pullEvents={[pullEvent]} pushEvents={[pushEvent]} watchEvents={[watchEvent]}/>
-</div>
-
+            <div>
+              <TopRepoStatus topRepo={topRepo} />
+            </div>
+           
           </Grid>
+
+          <div>
+              {mostRecCommit && (
+                <RecentCommitProgress mostRecentCommit={mostRecCommit} />
+              )}
+            </div>
+
+         
         </div>
         <div className="langCountCardContainer drop-shadow-2xl">
           <LanguageCount languageCounts={langCount} />
         </div>
         <div>
-        <PullRequestProgress OpenCount={issueCount.OpenCount} ClosedCount={issueCount.ClosedCount}/>
-        <TopicProgress topicCounts={topicCount}/>
-        <TotalLangProgress TotalCodePushedSinceJoingingGit={totalCount.TotalCodePushedSinceJoingingGit}/>
+          <PullRequestProgress
+            OpenCount={issueCount.OpenCount}
+            ClosedCount={issueCount.ClosedCount}
+          />
+          <TopicProgress topicCounts={topicCount} />
+          <TotalLangProgress
+            TotalCodePushedSinceJoingingGit={
+              totalCount.TotalCodePushedSinceJoingingGit
+            }
+          />
         </div>
-      
-         
-      </div>
-      <div className="flex flex-row basis-20 mt-2">
-        <div></div>
-      
       </div>
     </div>
   ) : (

@@ -122,10 +122,21 @@ export const getWatchEventAnalysis = async(userId:string)=>{
 }
 
 export const getPullEventAnalysis = async(userId:string)=>{
-  const endPoint ="getUserWatchEventsAnalysis"
+  const endPoint ="getUserPullEventsAnalysis"
   try{
     const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
     return response;
+  }
+  catch(err){
+    return err;
+  }
+}
+
+export const getRecentCommitAnalysis = async(userId: string)=>{
+  const endPoint = "getRecentCommitAnalysis"
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response
   }
   catch(err){
     return err;
