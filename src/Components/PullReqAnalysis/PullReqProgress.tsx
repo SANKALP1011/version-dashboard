@@ -17,7 +17,6 @@ const PullRequestProgress: React.FC<PullRequestAnalysis> = ({
     { name: "Open Count", value: openCount },
     { name: "Closed Count", value: closedCount },
   ];
-console.log(chartData)
   return (
     <div className="relative group items-start justify-center ml-16">
       <div className="pullReqGradientBack w-full absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>

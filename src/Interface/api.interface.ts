@@ -1,7 +1,7 @@
 // follower-analysis.interface.ts
 export interface FollowerAnalysis {
   followerCount: number;
-  increaseOrDecrease: string; // Use lowercase 'string'
+  increaseOrDecrease: string;
 }
 
 export interface FollowingAnalysis {
@@ -13,30 +13,26 @@ export interface LanguageCountAnalysis {
   [LangName: string]: number;
 }
 
-
 export interface FollowerFollowingRatio {
-
-    FollowerToFollowingRatio: String;
-
-
+  FollowerToFollowingRatio: String;
 }
 
-export interface RepoCountAnalysis{
+export interface RepoCountAnalysis {
   RepoCount: number;
-  increaseOrDecrease:string
+  increaseOrDecrease: string;
 }
 
-export interface PullRequestAnalysis{
+export interface PullRequestAnalysis {
   OpenCount: number;
   ClosedCount: number;
 }
 
-export interface TopicAnalaysis{
-  [Topic:string]:number
+export interface TopicAnalaysis {
+  [Topic: string]: number;
 }
 
-export interface TotalLangAnalysis{
-  TotalCodePushedSinceJoingingGit:number
+export interface TotalLangAnalysis {
+  TotalCodePushedSinceJoingingGit: number;
 }
 
 export interface TopRepo {
@@ -44,4 +40,22 @@ export interface TopRepo {
   StarsCount: number;
   Language: string;
   DateOfCreation: string;
+}
+
+export interface PullEventAnalysis {
+  EventType: string;
+  date: Date;
+  repoName: string;
+}
+
+export interface PushEventAnalysis {
+  EvenType: string;
+  date: Date;
+  repoName: string;
+}
+
+export interface WatchEventAnalysis {
+  EventType: string;
+  date: Date;
+  repoName: string;
 }

@@ -21,7 +21,10 @@ import {
   getClosedCount,
   getTopicAnalysis,
   getTotalLinesOfCodePushed,
-  getTopRepo
+  getTopRepo,
+  getPullEventAnalysis,
+  getPushEventAnalysis,
+  getWatchEventAnalysis
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
@@ -31,7 +34,10 @@ import {
   PullRequestAnalysis,
   TopicAnalaysis,
   TotalLangAnalysis,
-  TopRepo
+  TopRepo,
+  PushEventAnalysis,
+  WatchEventAnalysis,
+  PullEventAnalysis
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
@@ -41,6 +47,7 @@ import PullRequestProgress from "@/Components/PullReqAnalysis/PullReqProgress";
 import TopicProgress from "@/Components/TopicAnalysis/TopicProgress";
 import TotalLangProgress from "@/Components/LanguageAnalysis/TotalLangProgress";
 import TopRepoStatus from "@/Components/Repository/TopRepoStatus";
+import EventProgress from "@/Components/EventsAnalysis/EventProgress";
 
 
 
@@ -70,6 +77,10 @@ const VersionDashboard: React.FC = () => {
   const [totalCount,setTotalCount] = useState<TotalLangAnalysis>({TotalCodePushedSinceJoingingGit:0})
 
   const [topRepo,setTopRepo] = useState<TopRepo>({Name:"",StarsCount:0,Language:"",DateOfCreation:""})
+
+  const [pullEvent, setPullEvent] = useState<PullEventAnalysis>({EventType:"",date: new Date() , repoName:""})
+  const [pushEvent,setPushEvent] = useState<PushEventAnalysis>({EvenType:"",date:new Date(),repoName:""})
+  const [watchEvent,setWatchEvent] = useState<WatchEventAnalysis>({EventType:"",date:new Date(),repoName:""})
 
 
   const getFollowerAnalysisData = async () => {
@@ -143,7 +154,6 @@ const VersionDashboard: React.FC = () => {
       setTopicCount(data)
     }
     catch(err){
-      console.log(err)
       return err;
     }
   }
@@ -153,7 +163,6 @@ const VersionDashboard: React.FC = () => {
       const response:any = await getTotalLinesOfCodePushed("64b2e27fd3b241f53c4b4c55")
       const data:TotalLangAnalysis = await response.json();
       setTotalCount(data)
-      console.log(data)
     }
     catch(err){
       return err;
@@ -166,10 +175,42 @@ const VersionDashboard: React.FC = () => {
       const response:any = await getTopRepo("64b2e27fd3b241f53c4b4c55")
       const data:TopRepo = await response.json();
       setTopRepo(data)
-      console.log(data)
     }
     catch(err){
       return err;
+    }
+  }
+
+  const getPushEventData= async()=>{
+    try{
+      const response: any = await getPushEventAnalysis("64b2e27fd3b241f53c4b4c55")
+      const data:PushEventAnalysis = await response.json()
+      setPushEvent(data)
+    }
+    catch(err){
+      return err
+    }
+  }
+
+  const getWatchEventData= async()=>{
+    try{
+      const response: any = await getWatchEventAnalysis("64b2e27fd3b241f53c4b4c55")
+      const data:WatchEventAnalysis = await response.json()
+      setWatchEvent(data)
+    }
+    catch(err){
+      return err
+    }
+  }
+
+  const getPullEventData= async()=>{
+    try{
+      const response: any = await getPullEventAnalysis("64b2e27fd3b241f53c4b4c55")
+      const data:PullEventAnalysis = await response.json()
+      setPullEvent(data)
+    }
+    catch(err){
+      return err
     }
   }
 
@@ -182,6 +223,9 @@ const VersionDashboard: React.FC = () => {
     getTopicCountData()
     getTotallangCountData()
     getTopRepoData()
+    getPushEventData()
+    getWatchEventData()
+    getPullEventData()
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -236,9 +280,13 @@ const VersionDashboard: React.FC = () => {
               />
 
             </div>
+            
 
 <div>
 <TopRepoStatus topRepo={topRepo}/>
+</div>
+<div >
+<EventProgress pullEvents={[pullEvent]} pushEvents={[pushEvent]} watchEvents={[watchEvent]}/>
 </div>
 
           </Grid>
