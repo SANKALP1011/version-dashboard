@@ -30,7 +30,7 @@
 .mostRecentGradient {
   width: 103%;
   height: 102%;
-  border-radius: 35px;
+  border-radius: 45px;
 }
 .repoFlexCard{
   width: 110%;
@@ -38,7 +38,7 @@
   border-radius: 40px;
 }
 .oldestRepoCard{
-  border-radius: 50px;
+  border-radius: 35px;
 }
 .repoFlexHeading{
   border-bottom-width: 5px;
@@ -48,7 +48,7 @@
   width: 110%;
   border-radius: 35px;
 }
-.tt{
+.borderLeft{
   border-right-width: 3px;
   border-right-color: #F72798;
 }

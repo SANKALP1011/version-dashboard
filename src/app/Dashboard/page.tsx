@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Grid, Card } from "@tremor/react";
+import ReactFlow, { Background, Controls } from 'reactflow';
 import {
   getFollowerAnalysis,
   getFollowingAnalysis,
@@ -322,6 +323,7 @@ const VersionDashboard: React.FC = () => {
             <div>
               <TopRepoStatus topRepo={topRepo} />
             </div>
+            
           </Grid>
           <div className="flex flex-row">
             <div>
@@ -347,7 +349,7 @@ const VersionDashboard: React.FC = () => {
                   className="text-pink-600  font-extrabold font-mono hover:text-orange-500 hover:cursor-pointer"
                 >
                   Oldest Repo
-                  <span className="tt ml-5"></span>
+                  <span className="borderLeft ml-5"></span>
                 </h3>
                 <h3
                   onClick={() => {
