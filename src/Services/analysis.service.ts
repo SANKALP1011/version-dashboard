@@ -153,3 +153,14 @@ export const getOldestAndNewestRepo = async(userId: string)=>{
     return err;
   }
 }
+
+export const getTotalStarAnalysis= async(userId:string)=>{
+  const endPoint  = "totalStarsCounts";
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response
+  }
+  catch(err){
+    return err;
+  }
+}

@@ -9,7 +9,7 @@ interface RepoDataProp{
 export const OldRepoProgress: React.FC<RepoDataProp> = ({repoData})=>{
 
     return <div>
-      <Card className="bg-black oldestRepoCard  hover:bg-white" decorationColor="black">
+      <Card className="bg-zinc-900 oldestRepoCard  hover:bg-white" decorationColor="black">
         <h3 className="text-orange-400 font-extrabold font-mono">
             <span className="text-pink-600 mr-2 font-extrabold font-mono">Name :</span>
             {repoData.oldestRepo.name}

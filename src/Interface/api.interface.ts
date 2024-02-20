@@ -119,6 +119,9 @@ export interface RepoData {
   newestRepo: RepoInfo;
 }
 
+export interface TotalStar{
+  TotalStarsCount: number
+}
 
 
 

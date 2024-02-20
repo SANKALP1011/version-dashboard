@@ -16,6 +16,7 @@ import {
   getWatchEventAnalysis,
   getRecentCommitAnalysis,
   getOldestAndNewestRepo,
+  getTotalStarAnalysis,
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
@@ -31,6 +32,7 @@ import {
   PullEventAnalysis,
   MostRecentCommit,
   RepoData,
+  TotalStar,
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
@@ -43,6 +45,7 @@ import TopRepoStatus from "@/Components/Repository/TopRepoStatus";
 import RecentCommitProgress from "@/Components/Repository/RecentCommitProgeress";
 import OldRepoProgress from "@/Components/Repository/OldRepoProgress";
 import NewRepoProgress from "@/Components/Repository/NewRepoProgress";
+import TotalStarProgress from "@/Components/Repository/TotalStarProgress";
 
 const VersionDashboard: React.FC = () => {
   const [followerAnlData, setFollowerAnlData] = useState<FollowerAnalysis>({
@@ -99,6 +102,7 @@ const VersionDashboard: React.FC = () => {
     null
   );
   const [oldRepo, setOldRepo] = useState<RepoData | null>(null);
+  const [totalStar, setTotalStar] = useState<TotalStar>({ TotalStarsCount: 0 });
 
   const [oldestRepoCard, setShowOldestRepoCard] = useState(true);
   const [newestRepoCard, setNewRepoCard] = useState(false);
@@ -263,6 +267,18 @@ const VersionDashboard: React.FC = () => {
     }
   };
 
+  const getTotalStarData = async () => {
+    try {
+      const response: any = await getTotalStarAnalysis(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: TotalStar = await response.json();
+      setTotalStar(data);
+    } catch (err) {
+      return err;
+    }
+  };
+
   useEffect(() => {
     getFollowerAnalysisData();
     getFollowingAnalysisData();
@@ -274,6 +290,7 @@ const VersionDashboard: React.FC = () => {
     getTopRepoData();
     getMostRecentCommitData();
     getOldRepoData();
+    getTotalStarData();
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -292,8 +309,8 @@ const VersionDashboard: React.FC = () => {
             />
           </Grid>
           <Grid numItems={1} numItemsLg={2} numItemsSm={1}>
-            <div className="ml-6 mt-10 relative group items-start justify-cente">
-              <div className="tabCardBackGradient absolute -inset-0.5 bg-gradient-to-r from-green-600 to-blue-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+            <div>
+              <TotalStarProgress TotalStarsCount={totalStar.TotalStarsCount} />
             </div>
             <div>
               <RepoProgress
@@ -325,7 +342,7 @@ const VersionDashboard: React.FC = () => {
               <div className="flex flex-row gap-5 mb-5 repoFlexHeading">
                 <h3
                   onClick={() => {
- setNewRepoCard(false) , setShowOldestRepoCard(true)
+                    setNewRepoCard(false), setShowOldestRepoCard(true);
                   }}
                   className="text-pink-600  font-extrabold font-mono hover:text-orange-500 hover:cursor-pointer"
                 >
@@ -334,7 +351,7 @@ const VersionDashboard: React.FC = () => {
                 </h3>
                 <h3
                   onClick={() => {
-                    setNewRepoCard(true) , setShowOldestRepoCard(false)
+                    setNewRepoCard(true), setShowOldestRepoCard(false);
                   }}
                   className="text-blue-600  font-extrabold font-mono hover:text-green-400 hover:cursor-pointer"
                 >
@@ -347,7 +364,9 @@ const VersionDashboard: React.FC = () => {
                 )}
                 {newestRepoCard && (
                   <div>
-                <div>{oldRepo && <NewRepoProgress repoData={oldRepo}/>}</div>
+                    <div>
+                      {oldRepo && <NewRepoProgress repoData={oldRepo} />}
+                    </div>
                   </div>
                 )}
               </div>
