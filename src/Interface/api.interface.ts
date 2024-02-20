@@ -74,9 +74,51 @@ export interface MostRecentCommit {
 }
 }
 
-export interface CommitData {
-  
+interface RepoInfo {
+  name: string;
+  private: boolean;
+  repoUrl: string;
+  description: string;
+  dateOfCreation: string;
+  repoStarsCount: number;
+  repoWatchersCount: number;
+  buildLanguage: string;
+  repoForkCounts: number;
+  languagesUsedUrl: string;
+  openIssuesCount: number;
+  closedIssueCount: number;
+  repo_topics: string[];
+  repo_readme_content: string;
+  _id: string;
+  languagesBytesOfCodeUsed: LanguageBytes[];
+  branches: Branch[];
+  commit_history: Commit[];
 }
+
+interface LanguageBytes {
+  language: string;
+  bytesOfCode: number;
+  _id: string;
+}
+
+interface Branch {
+  name: string;
+  url: string;
+  _id: string;
+}
+
+interface Commit {
+  author_Namae: string;
+  author_commit_message: string;
+  commit_Date: string;
+  _id: string;
+}
+
+export interface RepoData {
+  oldestRepo: RepoInfo;
+  newestRepo: RepoInfo;
+}
+
 
 
 

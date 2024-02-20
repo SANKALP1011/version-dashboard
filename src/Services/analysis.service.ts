@@ -142,3 +142,14 @@ export const getRecentCommitAnalysis = async(userId: string)=>{
     return err;
   }
 }
+
+export const getOldestAndNewestRepo = async(userId: string)=>{
+  const endPoint  = "oldestNewestRepo";
+  try{
+    const response = await fetch(`${BASE_API}${endPoint}?id=${userId}`)
+    return response
+  }
+  catch(err){
+    return err;
+  }
+}

@@ -1,17 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Grid,
-  Flex,
-  Text,
-  ProgressBar,
-  TabGroup,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  Card,
-} from "@tremor/react";
+import { Grid, Card } from "@tremor/react";
 import {
   getFollowerAnalysis,
   getFollowingAnalysis,
@@ -26,6 +15,7 @@ import {
   getPushEventAnalysis,
   getWatchEventAnalysis,
   getRecentCommitAnalysis,
+  getOldestAndNewestRepo,
 } from "@/Services/analysis.service";
 import {
   FollowerAnalysis,
@@ -40,6 +30,7 @@ import {
   WatchEventAnalysis,
   PullEventAnalysis,
   MostRecentCommit,
+  RepoData,
 } from "@/Interface/api.interface";
 import FollowerProgress from "@/Components/FollowerAnalysis/FollowerProgress";
 import FollowingProgress from "@/Components/FollowerAnalysis/FollowingProgress";
@@ -50,6 +41,8 @@ import TopicProgress from "@/Components/TopicAnalysis/TopicProgress";
 import TotalLangProgress from "@/Components/LanguageAnalysis/TotalLangProgress";
 import TopRepoStatus from "@/Components/Repository/TopRepoStatus";
 import RecentCommitProgress from "@/Components/Repository/RecentCommitProgeress";
+import OldRepoProgress from "@/Components/Repository/OldRepoProgress";
+import NewRepoProgress from "@/Components/Repository/NewRepoProgress";
 
 const VersionDashboard: React.FC = () => {
   const [followerAnlData, setFollowerAnlData] = useState<FollowerAnalysis>({
@@ -105,6 +98,10 @@ const VersionDashboard: React.FC = () => {
   const [mostRecCommit, setMostRecCommit] = useState<MostRecentCommit | null>(
     null
   );
+  const [oldRepo, setOldRepo] = useState<RepoData | null>(null);
+
+  const [oldestRepoCard, setShowOldestRepoCard] = useState(true);
+  const [newestRepoCard, setNewRepoCard] = useState(false);
 
   const getFollowerAnalysisData = async () => {
     try {
@@ -253,6 +250,19 @@ const VersionDashboard: React.FC = () => {
       return err;
     }
   };
+
+  const getOldRepoData = async () => {
+    try {
+      const response: any = await getOldestAndNewestRepo(
+        "64b2e27fd3b241f53c4b4c55"
+      );
+      const data: RepoData = await response.json();
+      setOldRepo(data);
+    } catch (err) {
+      return err;
+    }
+  };
+
   useEffect(() => {
     getFollowerAnalysisData();
     getFollowingAnalysisData();
@@ -263,6 +273,7 @@ const VersionDashboard: React.FC = () => {
     getTotallangCountData();
     getTopRepoData();
     getMostRecentCommitData();
+    getOldRepoData();
   }, []);
 
   return followerAnlData.followerCount !== 0 &&
@@ -283,7 +294,6 @@ const VersionDashboard: React.FC = () => {
           <Grid numItems={1} numItemsLg={2} numItemsSm={1}>
             <div className="ml-6 mt-10 relative group items-start justify-cente">
               <div className="tabCardBackGradient absolute -inset-0.5 bg-gradient-to-r from-green-600 to-blue-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
-            
             </div>
             <div>
               <RepoProgress
@@ -296,16 +306,55 @@ const VersionDashboard: React.FC = () => {
               <TopRepoStatus topRepo={topRepo} />
             </div>
           </Grid>
-
-          <div>
-            {mostRecCommit && (
-              <RecentCommitProgress mostRecentCommit={mostRecCommit} />
-            )}
+          <div className="flex flex-row">
+            <div>
+              {mostRecCommit && (
+                <RecentCommitProgress mostRecentCommit={mostRecCommit} />
+              )}
+            </div>
           </div>
         </div>
         <div className="langCountCardContainer drop-shadow-2xl">
-          <LanguageCount languageCounts={langCount} />
+          <div>
+            <LanguageCount languageCounts={langCount} />
+          </div>
+
+          <div className="repoFlexBox mt-36 ml-10 relative group items-start justify-center">
+            <div className="repoGradinetBack w-full absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+            <Card className="bg-black repoFlexCard ">
+              <div className="flex flex-row gap-5 mb-5 repoFlexHeading">
+                <h3
+                  onClick={() => {
+ setNewRepoCard(false) , setShowOldestRepoCard(true)
+                  }}
+                  className="text-pink-600  font-extrabold font-mono hover:text-orange-500 hover:cursor-pointer"
+                >
+                  Oldest Repo
+                  <span className="tt ml-5"></span>
+                </h3>
+                <h3
+                  onClick={() => {
+                    setNewRepoCard(true) , setShowOldestRepoCard(false)
+                  }}
+                  className="text-blue-600  font-extrabold font-mono hover:text-green-400 hover:cursor-pointer"
+                >
+                  Newest Repo
+                </h3>
+              </div>
+              <div className="">
+                {oldestRepoCard && (
+                  <div>{oldRepo && <OldRepoProgress repoData={oldRepo} />}</div>
+                )}
+                {newestRepoCard && (
+                  <div>
+                <div>{oldRepo && <NewRepoProgress repoData={oldRepo}/>}</div>
+                  </div>
+                )}
+              </div>
+            </Card>
+          </div>
         </div>
+
         <div>
           <PullRequestProgress
             OpenCount={issueCount.OpenCount}

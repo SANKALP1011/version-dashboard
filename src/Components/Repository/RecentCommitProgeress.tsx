@@ -17,23 +17,23 @@ const RecentCommitProgress: React.FC<MostRecentCommitInterfaceProp> = ({
       <Card className="bg-black mostRecentCard ml-7">
         <div className="w-32 text-center mb-1">
         <RoughNotation type="highlight" show={show} color="red" strokeWidth={5}>
-          <h2 className="text-white text-center font-sans font-extrabold">Recent Commit</h2>
+          <h2 className="text-white text-center  font-extrabold font-mono">Recent Commit</h2>
         </RoughNotation>
         </div>
  
-        <h1 className="text-pink-600 font-sans font-extrabold mb-1">
+        <h1 className="text-pink-600  font-extrabold font-mono mb-1">
       <span className="text-blue-500 mr-2">Name:</span>   {mostRecentCommit.mostRecentCommit.repoName}
         </h1>
-        <h3 className="text-red-600 font-sans font-extrabold mb-1">
+        <h3 className="text-red-600  font-extrabold font-mono mb-1">
      <span className="text-violet-600 mr-2"> Commit Date:</span>    {mostRecentCommit.mostRecentCommit.commitDate}
         </h3>
-        <p className="text-orange-600 font-sans font-extrabold mb-1">
+        <p className="text-orange-600 font-extrabold font-mono mb-1">
        <span className="text-blue-600">AgeInDays:</span>   {mostRecentCommit.mostRecentCommit.ageInDays}
         </p>
-        <p className="text-yellow-600 font-sans font-extrabold mb-1">
+        <p className="text-yellow-600  font-extrabold font-mono mb-1">
       <span className="text-pink-400 mr-2">  Author:</span> {mostRecentCommit.mostRecentCommit.commitData.author_Namae}
         </p>
-        <p className="text-blue-600 font-sans font-extrabold">
+        <p className="text-blue-600  font-extrabold font-mono">
        <span className="text-green-600 mr-2">Message:</span>   {mostRecentCommit.mostRecentCommit.commitData.author_commit_message}
         </p>
       </Card>

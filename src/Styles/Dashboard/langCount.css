@@ -32,3 +32,23 @@
   height: 102%;
   border-radius: 35px;
 }
+.repoFlexCard{
+  width: 110%;
+  margin-top: 36%;
+  border-radius: 40px;
+}
+.oldestRepoCard{
+  border-radius: 50px;
+}
+.repoFlexHeading{
+  border-bottom-width: 5px;
+  border-bottom-color: #FC6736;
+}
+.repoGradinetBack{
+  width: 110%;
+  border-radius: 35px;
+}
+.tt{
+  border-right-width: 3px;
+  border-right-color: #F72798;
+}
