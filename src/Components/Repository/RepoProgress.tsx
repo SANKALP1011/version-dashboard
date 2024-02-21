@@ -23,7 +23,7 @@ const RepoProgress: React.FC<RepoCountAnalysis> = ({
         <div className="mb-3">
       {show && ( 
           <RoughNotation type="underline" show={show} color="orange" strokeWidth={5}>
-            <h2 className="followerAnalysisCardTitle font-mono">Repo Count</h2>
+            <h2 className="followerAnalysisCardTitle">Repo Count</h2>
           </RoughNotation>
         )}
         </div>
@@ -36,7 +36,7 @@ const RepoProgress: React.FC<RepoCountAnalysis> = ({
             tooltip="Followers"
             color={"pink"}
           >
-            <span className="text-md text-blue-700 font-large font-extrabold font-mono">{RepoCount}</span>
+            <span className="text-md text-blue-700 font-large font-extrabold">{RepoCount}</span>
           </ProgressCircle>
           {increaseOrDecrease === "no_change" ? (
             <BadgeDelta

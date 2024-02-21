@@ -343,8 +343,18 @@ const VersionDashboard: React.FC = () => {
           <div>
             <LanguageCount languageCounts={langCount} />
           </div>
-
-          <div className="repoFlexBox mt-36 ml-10 relative group items-start justify-center">
+<div className="heroTitleDiv mt-10 ml-20">
+<RoughNotation
+                  type="box"
+                  strokeWidth={5}
+                  color="yellow"
+                  show={show}
+                  multiline={true}
+                >
+  <h2 className="heroTitle text-white">Welcomeeeee <span> <p className="text-orange-500 y">Crafted By - Sankalp's Github Profile </p></span></h2>
+  </RoughNotation>
+</div>
+          <div className="repoFlexBox ml-10 relative group items-start justify-center">
             <div className="repoGradinetBack w-full absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
             <Card className="bg-black repoFlexCard ">
               <div className="flex flex-row gap-5 mb-5 repoFlexHeading">
@@ -359,7 +369,7 @@ const VersionDashboard: React.FC = () => {
                     onClick={() => {
                       setNewRepoCard(false), setShowOldestRepoCard(true);
                     }}
-                    className="text-blue-600 font-extrabold font-mono hover:text-pink-600 hover:cursor-pointer"
+                    className="text-blue-600 font-extrabold font-mono hover:text-yellow-300 hover:cursor-pointer"
                   >
                     Oldest Repo
                     
@@ -376,7 +386,7 @@ const VersionDashboard: React.FC = () => {
                   onClick={() => {
                     setNewRepoCard(true), setShowOldestRepoCard(false);
                   }}
-                  className="text-pink-600  font-extrabold font-mono hover:text-blue-600 hover:cursor-pointer"
+                  className="text-pink-600  font-extrabold font-mono hover:text-violet-500 hover:cursor-pointer"
                 >
                   Newest Repo
                 </h3>

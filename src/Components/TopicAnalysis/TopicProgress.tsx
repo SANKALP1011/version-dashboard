@@ -23,7 +23,7 @@ export const TopicProgress:React.FC<TopicCountProps>=({topicCounts})=>{
         <div className="topicBackGroundGrad w-full absolute -inset-0.5 bg-gradient-to-r from-yellow-300 to-red-400  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
         <Card className="topicCloudCard">
             <RoughNotation type="underline" show={show} color="pink" strokeWidth={5}>
-                <h2 className="topicCardTitle font-mono mb-2">Topics Worked</h2>
+                <h2 className="topicCardTitle  mb-2">Topics Worked</h2>
             </RoughNotation>
      <ReactWordcloud words={wordCloudData} options={options}/>
         </Card>

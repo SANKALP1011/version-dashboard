@@ -19,7 +19,7 @@ const TotalLangProgress: React.FC<TotalLangAnalysis> = ({
               color="red"
               strokeWidth={5}
             >
-              <h2 className="totalLangrAnalysisCardTitle font-mono mb-5">
+              <h2 className="totalLangrAnalysisCardTitle mb-5">
                 Lines of code pushed
               </h2>
             </RoughNotation>

@@ -23,7 +23,7 @@ const PullRequestProgress: React.FC<PullRequestAnalysis> = ({
       <Card className="pullRequestCard">
         <RoughNotation type="underline" show={show} color="green" strokeWidth={5}>
           {" "}
-          <Title className="pullRequestTitle font-mono">
+          <Title className="pullRequestTitle">
             Pull Request Analysis
           </Title>
         </RoughNotation>
@@ -34,7 +34,8 @@ const PullRequestProgress: React.FC<PullRequestAnalysis> = ({
           category="value"
           index="name"
           valueFormatter={valueFormatter}
-          colors={["rose", "yellow"]}
+          colors={["pink", "blue"]}
+          variant="pie"
         />
       </Card>
     </div>

@@ -23,7 +23,7 @@ const FollowerProgress: React.FC<FollowerAnalysis> = ({
         <div className="mb-3">
       {show && ( 
           <RoughNotation type="underline" show={show} color="orange" strokeWidth={5}>
-            <h2 className="followerAnalysisCardTitle font-mono">Followers</h2>
+            <h2 className="followerAnalysisCardTitle">Followers</h2>
           </RoughNotation>
         )}
         </div>
@@ -36,7 +36,7 @@ const FollowerProgress: React.FC<FollowerAnalysis> = ({
             tooltip="Followers"
             color={"green"}
           >
-            <span className="text-md text-pink-700 font-large font-bold font-mono">{followerCount}</span>
+            <span className="text-md text-pink-700 font-large font-bold">{followerCount}</span>
           </ProgressCircle>
           {increaseOrDecrease === "no_change" ? (
             <BadgeDelta

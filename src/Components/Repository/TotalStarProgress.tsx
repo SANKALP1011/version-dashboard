@@ -22,7 +22,7 @@ const TotalStarProgress: React.FC<TotalStar> = ({
         <div className="mb-3">
       {show && ( 
           <RoughNotation type="underline" show={show} color="orange" strokeWidth={5}>
-            <h2 className="followerAnalysisCardTitle font-mono">Total Stars</h2>
+            <h2 className="followerAnalysisCardTitle">Total Stars</h2>
           </RoughNotation>
         )}
         </div>
@@ -35,7 +35,7 @@ const TotalStarProgress: React.FC<TotalStar> = ({
             tooltip="Followers"
             color={"orange"}
           >
-            <span className="text-md text-blue-700 font-large font-extrabold font-mono">{TotalStarsCount}</span>
+            <span className="text-md text-blue-700 font-large font-extrabold ">{TotalStarsCount}</span>
           </ProgressCircle>
           <BadgeDelta
               deltaType="unchanged"
