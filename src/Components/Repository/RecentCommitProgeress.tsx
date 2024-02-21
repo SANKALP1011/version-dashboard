@@ -12,7 +12,7 @@ const RecentCommitProgress: React.FC<MostRecentCommitInterfaceProp> = ({
 }) => {
   const [show,setShow] = useState(true)
   return (
-    <div className="mt-8 relative group items-start justify-center">
+    <div className="mt-8 relative group items-start justify-center h">
       <div className="ml-5 mostRecentGradient absolute inset-0 bg-gradient-to-r from-pink-600 to-red-600 blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
       <Card className="bg-black mostRecentCard ml-7">
         <div className="w-32 text-center mb-1">
@@ -34,7 +34,7 @@ const RecentCommitProgress: React.FC<MostRecentCommitInterfaceProp> = ({
       <span className="text-pink-400 mr-2">  Author:</span> {mostRecentCommit.mostRecentCommit.commitData.author_Namae}
         </p>
         <p className="text-blue-600  font-extrabold">
-       <span className="text-green-600 mr-2">Message:</span>   {mostRecentCommit.mostRecentCommit.commitData.author_commit_message}
+       <span className="text-green-600 mr-2">Message:</span>   {mostRecentCommit.mostRecentCommit.commitData.author_commit_message.substring(0,35)}...
         </p>
       </Card>
     </div>

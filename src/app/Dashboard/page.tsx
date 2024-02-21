@@ -331,13 +331,13 @@ const VersionDashboard: React.FC = () => {
               <Image src={NotationImage} alt="demo" className="demo ml-5"/>
             </div>
           </Grid>
-          <div className="flex flex-row">
+
             <div>
               {mostRecCommit && (
                 <RecentCommitProgress mostRecentCommit={mostRecCommit} />
               )}
             </div>
-          </div>
+
         </div>
         <div className="langCountCardContainer drop-shadow-2xl">
           <div>
