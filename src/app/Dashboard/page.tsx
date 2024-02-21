@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Grid, Card } from "@tremor/react";
-import ReactFlow, { Background, Controls } from 'reactflow';
+import { RoughNotation } from "react-rough-notation";
 import {
   getFollowerAnalysis,
   getFollowingAnalysis,
@@ -107,6 +107,7 @@ const VersionDashboard: React.FC = () => {
 
   const [oldestRepoCard, setShowOldestRepoCard] = useState(true);
   const [newestRepoCard, setNewRepoCard] = useState(false);
+  const [show, setShow] = useState(true);
 
   const getFollowerAnalysisData = async () => {
     try {
@@ -323,7 +324,6 @@ const VersionDashboard: React.FC = () => {
             <div>
               <TopRepoStatus topRepo={topRepo} />
             </div>
-            
           </Grid>
           <div className="flex flex-row">
             <div>
@@ -342,23 +342,39 @@ const VersionDashboard: React.FC = () => {
             <div className="repoGradinetBack w-full absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
             <Card className="bg-black repoFlexCard ">
               <div className="flex flex-row gap-5 mb-5 repoFlexHeading">
-                <h3
-                  onClick={() => {
-                    setNewRepoCard(false), setShowOldestRepoCard(true);
-                  }}
-                  className="text-pink-600  font-extrabold font-mono hover:text-orange-500 hover:cursor-pointer"
+                <RoughNotation
+                  type="box"
+                  strokeWidth={5}
+                  color="red"
+                  show={show}
                 >
-                  Oldest Repo
-                  <span className="borderLeft ml-5"></span>
-                </h3>
+                  {" "}
+                  <h3
+                    onClick={() => {
+                      setNewRepoCard(false), setShowOldestRepoCard(true);
+                    }}
+                    className="text-blue-600 font-extrabold font-mono hover:text-pink-600 hover:cursor-pointer"
+                  >
+                    Oldest Repo
+                    
+                  </h3>
+                </RoughNotation>
+                <span className="borderLeft ml-3"></span>
+                <RoughNotation
+                  type="box"
+                  strokeWidth={5}
+                  color="yellow"
+                  show={show}
+                >
                 <h3
                   onClick={() => {
                     setNewRepoCard(true), setShowOldestRepoCard(false);
                   }}
-                  className="text-blue-600  font-extrabold font-mono hover:text-green-400 hover:cursor-pointer"
+                  className="text-pink-600  font-extrabold font-mono hover:text-blue-600 hover:cursor-pointer"
                 >
                   Newest Repo
                 </h3>
+                </RoughNotation>
               </div>
               <div className="">
                 {oldestRepoCard && (
