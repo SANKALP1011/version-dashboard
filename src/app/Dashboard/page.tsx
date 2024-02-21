@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from 'next/image';
 import { Grid, Card } from "@tremor/react";
 import { RoughNotation } from "react-rough-notation";
 import {
@@ -47,6 +48,7 @@ import RecentCommitProgress from "@/Components/Repository/RecentCommitProgeress"
 import OldRepoProgress from "@/Components/Repository/OldRepoProgress";
 import NewRepoProgress from "@/Components/Repository/NewRepoProgress";
 import TotalStarProgress from "@/Components/Repository/TotalStarProgress";
+import NotationImage from "@/Assets/Not2.png"
 
 const VersionDashboard: React.FC = () => {
   const [followerAnlData, setFollowerAnlData] = useState<FollowerAnalysis>({
@@ -323,6 +325,10 @@ const VersionDashboard: React.FC = () => {
 
             <div>
               <TopRepoStatus topRepo={topRepo} />
+        
+            </div>
+            <div className="notationDiv">
+              <Image src={NotationImage} alt="demo" className="demo ml-5"/>
             </div>
           </Grid>
           <div className="flex flex-row">
