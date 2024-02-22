@@ -110,6 +110,19 @@ const VersionDashboard: React.FC = () => {
   const [oldestRepoCard, setShowOldestRepoCard] = useState(true);
   const [newestRepoCard, setNewRepoCard] = useState(false);
   const [show, setShow] = useState(true);
+  const [smallScreen , setSmallScreen] = useState(false)
+
+  const checkScreenSize = ()=>{
+
+      const isMobile = typeof window !== 'undefined' && window.matchMedia("(max-width:1024px)").matches;
+      if (isMobile) {
+      setSmallScreen(true)
+      }
+      else{
+        setSmallScreen(false)
+      }
+
+  }
 
   const getFollowerAnalysisData = async () => {
     try {
@@ -284,6 +297,7 @@ const VersionDashboard: React.FC = () => {
   };
 
   useEffect(() => {
+    checkScreenSize()
     getFollowerAnalysisData();
     getFollowingAnalysisData();
     getLanguageCountAnalysisData();
@@ -297,91 +311,99 @@ const VersionDashboard: React.FC = () => {
     getTotalStarData();
   }, []);
 
-  return followerAnlData.followerCount !== 0 &&
-    followingAnlData.followingCount !== 0 ? (
+  return smallScreen ? (
+    <div className="text-center screenSizeDiv">
+    <h1 className="text-white screenTitle font-extrabold">
+      For the perfect view, kindly visit this website on the desktop.
+    </h1>
+  </div>
+  ) : (
     <div>
-      <div className="flex flex-row basis-20 mt-10">
-        <div className="drop-shadow-2xl">
-          <Grid numItems={1} numItemsSm={1} numItemsLg={2} className="gap-3">
-            <FollowerProgress
-              followerCount={followerAnlData.followerCount}
-              increaseOrDecrease={followerAnlData.increaseOrDecrease}
-            />
-            <FollowingProgress
-              followingCount={followingAnlData.followingCount}
-              increaseOrDecrease={followerAnlData.increaseOrDecrease}
-            />
-          </Grid>
-          <Grid numItems={1} numItemsLg={2} numItemsSm={1}>
-            <div>
-              <TotalStarProgress TotalStarsCount={totalStar.TotalStarsCount} />
-            </div>
-            <div>
-              <RepoProgress
-                RepoCount={repoCount.RepoCount}
-                increaseOrDecrease={repoCount.increaseOrDecrease}
-              />
-            </div>
-
-            <div>
-              <TopRepoStatus topRepo={topRepo} />
-        
-            </div>
-            <div className="notationDiv">
-              <Image src={NotationImage} alt="demo" className="demo ml-5"/>
-            </div>
-          </Grid>
-
-            <div>
-              {mostRecCommit && (
-                <RecentCommitProgress mostRecentCommit={mostRecCommit} />
-              )}
-            </div>
-
-        </div>
-        <div className="langCountCardContainer drop-shadow-2xl">
+    <div className="flex flex-row basis-20 mt-10">
+      <div className="drop-shadow-2xl">
+        <Grid numItems={1} numItemsSm={1} numItemsLg={2} className="gap-3">
+          <FollowerProgress
+            followerCount={followerAnlData.followerCount}
+            increaseOrDecrease={followerAnlData.increaseOrDecrease}
+          />
+          <FollowingProgress
+            followingCount={followingAnlData.followingCount}
+            increaseOrDecrease={followerAnlData.increaseOrDecrease}
+          />
+        </Grid>
+        <Grid numItems={1} numItemsLg={2} numItemsSm={1}>
           <div>
-            <LanguageCount languageCounts={langCount} />
+            <TotalStarProgress TotalStarsCount={totalStar.TotalStarsCount} />
           </div>
-<div className="heroTitleDiv mt-10 ml-20">
-<RoughNotation
-                  type="box"
-                  strokeWidth={5}
-                  color="yellow"
-                  show={show}
-                  multiline={true}
+          <div>
+            <RepoProgress
+              RepoCount={repoCount.RepoCount}
+              increaseOrDecrease={repoCount.increaseOrDecrease}
+            />
+          </div>
+
+          <div>
+            <TopRepoStatus topRepo={topRepo} />
+          </div>
+          <div className="notationDiv">
+            <Image src={NotationImage} alt="demo" className="demo ml-5" />
+          </div>
+        </Grid>
+
+        <div>
+          {mostRecCommit && <RecentCommitProgress mostRecentCommit={mostRecCommit} />}
+        </div>
+      </div>
+      <div className="langCountCardContainer drop-shadow-2xl">
+        <div>
+          <LanguageCount languageCounts={langCount} />
+        </div>
+        <div className="heroTitleDiv mt-10 ml-20">
+          <RoughNotation
+            type="box"
+            strokeWidth={5}
+            color="yellow"
+            show={show}
+            multiline={true}
+          >
+            <h2 className="heroTitle text-white">
+              Welcomeeeee{" "}
+              <span>
+                {" "}
+                <p className="text-orange-500 y">
+                  Crafted By - Sankalp's Github Profile{" "}
+                </p>
+              </span>
+            </h2>
+          </RoughNotation>
+        </div>
+        <div className="repoFlexBox ml-10 relative group items-start justify-center">
+          <div className="repoGradinetBack w-full absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
+          <Card className="bg-black repoFlexCard ">
+            <div className="flex flex-row gap-5 mb-5 repoFlexHeading">
+              <RoughNotation
+                type="box"
+                strokeWidth={5}
+                color="red"
+                show={show}
+              >
+                {" "}
+                <h3
+                  onClick={() => {
+                    setNewRepoCard(false), setShowOldestRepoCard(true);
+                  }}
+                  className="text-blue-600 font-extrabold font-mono hover:text-yellow-300 hover:cursor-pointer"
                 >
-  <h2 className="heroTitle text-white">Welcomeeeee <span> <p className="text-orange-500 y">Crafted By - Sankalp's Github Profile </p></span></h2>
-  </RoughNotation>
-</div>
-          <div className="repoFlexBox ml-10 relative group items-start justify-center">
-            <div className="repoGradinetBack w-full absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-red-600  blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-pulse"></div>
-            <Card className="bg-black repoFlexCard ">
-              <div className="flex flex-row gap-5 mb-5 repoFlexHeading">
-                <RoughNotation
-                  type="box"
-                  strokeWidth={5}
-                  color="red"
-                  show={show}
-                >
-                  {" "}
-                  <h3
-                    onClick={() => {
-                      setNewRepoCard(false), setShowOldestRepoCard(true);
-                    }}
-                    className="text-blue-600 font-extrabold font-mono hover:text-yellow-300 hover:cursor-pointer"
-                  >
-                    Oldest Repo
-                    
-                  </h3>
-                </RoughNotation>
-                <span className="borderLeft ml-3"></span>
-                <RoughNotation
-                  type="box"
-                  strokeWidth={5}
-                  color="yellow"
-                  show={show}
-                >
+                  Oldest Repo
+                </h3>
+              </RoughNotation>
+              <span className="borderLeft ml-3"></span>
+              <RoughNotation
+                type="box"
+                strokeWidth={5}
+                color="yellow"
+                show={show}
+              >
                 <h3
                   onClick={() => {
                     setNewRepoCard(true), setShowOldestRepoCard(false);
@@ -390,41 +412,39 @@ const VersionDashboard: React.FC = () => {
                 >
                   Newest Repo
                 </h3>
-                </RoughNotation>
-              </div>
-              <div className="">
-                {oldestRepoCard && (
-                  <div>{oldRepo && <OldRepoProgress repoData={oldRepo} />}</div>
-                )}
-                {newestRepoCard && (
-                  <div>
-                    <div>
-                      {oldRepo && <NewRepoProgress repoData={oldRepo} />}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Card>
-          </div>
-        </div>
-
-        <div>
-          <PullRequestProgress
-            OpenCount={issueCount.OpenCount}
-            ClosedCount={issueCount.ClosedCount}
-          />
-          <TopicProgress topicCounts={topicCount} />
-          <TotalLangProgress
-            TotalCodePushedSinceJoingingGit={
-              totalCount.TotalCodePushedSinceJoingingGit
-            }
-          />
+              </RoughNotation>
+            </div>
+            <div className="">
+              {oldestRepoCard && (
+                <div>{oldRepo && <OldRepoProgress repoData={oldRepo} />}</div>
+              )}
+              {newestRepoCard && (
+                <div>
+                  <div>{oldRepo && <NewRepoProgress repoData={oldRepo} />}</div>
+                </div>
+              )}
+            </div>
+          </Card>
         </div>
       </div>
-    </div>
-  ) : (
-    <></>
-  );
-};
 
-export default VersionDashboard;
+      <div>
+        <PullRequestProgress
+          OpenCount={issueCount.OpenCount}
+          ClosedCount={issueCount.ClosedCount}
+        />
+        <TopicProgress topicCounts={topicCount} />
+        <TotalLangProgress
+          TotalCodePushedSinceJoingingGit={
+            totalCount.TotalCodePushedSinceJoingingGit
+          }
+        />
+      </div>
+    </div>
+  </div>
+  );
+  };  
+
+
+  export default VersionDashboard
+

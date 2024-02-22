@@ -21,3 +21,15 @@ h2 , h3 , span ,p{
 .y{
 font-size: 17px;
 }
+.screenSizeDiv{
+
+margin-top: 55%;
+    width: 100%;
+    height: 100px;
+
+    
+}
+.screenTitle{
+    font-family: "Shantell Sans", cursive;
+    font-size: 30px;
+}
